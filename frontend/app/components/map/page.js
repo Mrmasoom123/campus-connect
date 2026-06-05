@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useGeolocation } from '../../hooks/useGeolocation';
 import MapComponent from './MapComponent';
 import API from '../../api';
+import dynamic from 'next/dynamic';
+const MapComponent = dynamic(() => import('./MapComponent'), { ssr: false });
 
 export default function Dashboard() {
     const { location, getCoordinates, loading } = useGeolocation();
