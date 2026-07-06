@@ -9,7 +9,7 @@ export default function LiveScore({ matchId }) {
     // Function to get the latest data from Spring Boot
     const fetchScore = async () => {
         try {
-            const res = await fetch(`http://localhost:8080/api/matches/live/${matchId}`);
+            const res = await fetch(`https://campus-connect-s0u2.onrender.com/api/matches/live/${matchId}`);
             if (!res.ok) throw new Error("Match not found");
             const data = await res.json();
             setMatch(data);
@@ -32,18 +32,33 @@ export default function LiveScore({ matchId }) {
         const newT1 = (match?.team1Score || 0) + t1Add;
         const newT2 = (match?.team2Score || 0) + t2Add;
 
-        await fetch(`http://localhost:8080/api/matches/update/${matchId}?t1=${newT1}&t2=${newT2}&finished=${finishedStatus}`, {
-            method: 'POST'
-        });
-        fetchScore();
+        try {
+            await fetch(`https://campus-connect-s0u2.onrender.com/api/matches/update/${matchId}?t1=${newT1}&t2=${newT2}&finished=${finishedStatus}`, {
+                method: 'POST'
+            });
+            fetchScore();
+        } catch (err) {
+            console.error("Update error:", err);
+        }
     };
 
     // Reset Match to 0-0 and restart
     const resetMatch = async () => {
-        await fetch(`http://localhost:8080/api/matches/update/${matchId}?t1=0&t2=0&finished=false`, {
-            method: 'POST'
-        });
-        fetchScore();
+        try {
+            await fetch(`https://campus-connect-s0u2.onrender.com/api/matches/update/${matchId}?t1=0&t2=0&finished=false`, {
+                method: 'POST'
+            });
+            fetchScore();
+        } catch (err) {
+            console.error("Reset error:", err);
+        }
+    };
+
+    // Derived logic to accurately determine winner based on current scores
+    const getWinnerMessage = () => {
+        if (!match) return "";
+        if (match.team1Score === match.team2Score) return "Draw";
+        return match.team1Score > match.team2Score ? "🏆 Winner: CSE" : "🏆 Winner: ECE";
     };
 
     if (error) return <div className="text-red-500 text-center p-4 bg-white rounded-xl shadow">⚠️ Match ID {matchId} not found in Database</div>;
@@ -89,9 +104,9 @@ export default function LiveScore({ matchId }) {
                 </div>
             ) : (
                 /* Post-Match Section */
-                <div className="mt-4 pt-4 border-t border-gray-800 text-center animate-fadeIn">
+                <div className="mt-4 pt-4 border-t border-gray-800 text-center">
                     <p className="text-yellow-400 font-black text-lg mb-4 italic uppercase">
-                        🏆 Winner: {match.winnerId === 0 ? "Draw" : (match.winnerId === 1 ? "CSE" : "ECE")}
+                        {getWinnerMessage()}
                     </p>
                     <button
                         onClick={resetMatch}

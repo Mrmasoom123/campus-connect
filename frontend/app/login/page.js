@@ -12,7 +12,7 @@ export default function LoginPage() {
         e.preventDefault();
         try {
             // 1. Pointing to your specific LoginController endpoint
-            const res = await axios.post('http://localhost:8080/api/auth/login', {
+            const res = await axios.post('https://campus-connect-s0u2.onrender.com/api/auth/login', {
                 email, // Maps to loginData.get("email") in Java
                 password
             });

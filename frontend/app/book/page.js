@@ -12,7 +12,7 @@ export default function BookAppointment() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:8080/api/appointments/book', formData);
+            await axios.post('http://campus-connect-s0u2.onrender.com/api/appointments/book', formData);
             alert("✨ Request Sent Successfully!");
             setFormData({ studentName: '', facultyName: '', communityName: '', roomNo: '', appointmentTime: '', reason: '' });
         } catch (err) { alert("Connection Error. Check Spring Boot!"); }

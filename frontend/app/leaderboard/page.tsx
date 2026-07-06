@@ -10,7 +10,7 @@ export default function Leaderboard() {
     const CAMPUS_LNG = 75.8652;
 
     const fetchRankings = () => {
-        fetch('http://localhost:8080/api/users/leaderboard')
+        fetch('https://campus-connect-s0u2.onrender.com/api/users/leaderboard')
             .then(res => res.json())
             .then(data => setPlayers(data))
             .catch(err => console.error("Error:", err));

@@ -1,6 +1,6 @@
 export const markAttendance = async (lat, lon, studentName) => {
   try {
-    const response = await fetch('http://localhost:8080/api/attendance/mark', {
+    const response = await fetch('http://campus-connect-s0u2.onrender.com/api/attendance/mark', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

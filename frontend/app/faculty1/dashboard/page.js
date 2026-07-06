@@ -8,7 +8,7 @@ export default function FacultyDashboard() {
 
     const fetchAppts = async () => {
         try {
-            const res = await axios.get('http://127.0.0.1:8080/api/appointments/all');
+            const res = await axios.get('https://campus-connect-s0u2.onrender.com/api/appointments/all');
             setAppointments(res.data);
         } catch (err) { console.error("Fetch Error:", err); }
     };

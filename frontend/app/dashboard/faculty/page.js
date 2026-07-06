@@ -7,7 +7,7 @@ export default function FacultyDashboard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/users/all-students')
+        axios.get('https://campus-connect-s0u2.onrender.com/api/users/all-students')
             .then(res => {
                 setStudents(res.data);
                 setLoading(false);
@@ -36,8 +36,8 @@ export default function FacultyDashboard() {
                 <div className="grid gap-8">
                     {loading ? (
                         <div className="py-20 text-center animate-pulse font-black text-slate-300 uppercase tracking-widest">Initialising Audit...</div>
-                    ) : students.map(s => (
-                        <div key={s.uid} className="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl hover:shadow-blue-900/5 transition-all group">
+                   ) : students.map(s => (
+                       <div key={s.id} className="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl hover:shadow-blue-900/5 transition-all group">
 
                             {/* --- TOP PROFILE SECTION (Screenshot Style) --- */}
                             <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-center md:items-start border-b border-slate-50">

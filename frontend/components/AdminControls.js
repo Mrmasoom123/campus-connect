@@ -4,7 +4,7 @@ export default function AdminControls({ matchId }) {
     const updateScore = async (t1, t2, isFinished) => {
         try {
             // Logic: Sending data to your Spring Boot @PostMapping
-            await fetch(`http://localhost:8080/api/matches/update/${matchId}?t1=${t1}&t2=${t2}&finished=${isFinished}`, {
+            await fetch(`https://campus-connect-s0u2.onrender.com/api/matches/update/${matchId}?t1=${t1}&t2=${t2}&finished=${isFinished}`, {
                 method: 'POST',
             });
         } catch (err) {

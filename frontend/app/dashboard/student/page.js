@@ -8,7 +8,7 @@ export default function StudentDashboard() {
 
     useEffect(() => {
         const username = localStorage.getItem('username');
-        axios.get(`http://localhost:8080/api/users/profile/${username}`)
+        axios.get(`https://campus-connect-s0u2.onrender.com/api/users/profile/${username}`)
             .then(res => {
                 setUser(res.data);
                 setLoading(false);

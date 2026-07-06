@@ -5,7 +5,7 @@ export default function AdminLogs() {
     const [logs, setLogs] = useState([]);
 
     const fetchLogs = () => {
-        fetch('http://localhost:8080/api/admin/log')
+        fetch('https://campus-connect-s0u2.onrender.com/api/admin/log')
             .then(res => {
                 if (!res.ok) throw new Error("Network response was not ok");
                 return res.json();

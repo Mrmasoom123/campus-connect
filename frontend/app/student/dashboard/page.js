@@ -28,7 +28,7 @@ export default function StudentDashboard() {
         }
         setStudentName(savedName);
 
-        axios.get(`http://127.0.0.1:8080/api/appointments/all`)
+       axios.get(`https://campus-connect-s0u2.onrender.com/api/appointments/all`)
             .then(res => {
                 const filtered = res.data.filter(a => a.studentName === savedName);
                 setMyAppts(filtered);

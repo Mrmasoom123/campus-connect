@@ -10,7 +10,7 @@ export default function Home() {
     const fetchEvents = async () => {
         setLoading(true);
         try {
-            const res = await fetch('https://your-spring-boot-backend.onrender.com/api/events');
+            const res = await fetch('https://campus-connect-s0u2.onrender.com/api/events');
             if (!res.ok) throw new Error(`Server error: ${res.status}`);
             const data = await res.json();
             setEvents(data);
