@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/events")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://campus-connect-roan-xi.vercel.app")
 public class EventController {
 
     @Autowired
